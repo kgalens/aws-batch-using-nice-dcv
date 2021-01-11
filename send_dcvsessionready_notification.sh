@@ -21,8 +21,7 @@ while true; do
 done
 _topic_arn="$(/usr/local/bin/aws secretsmanager get-secret-value \
                                  --secret-id DCV_Session_Ready_Notification \
-                                 --query SecretString  --output text 2>/dev/null | \
-              jq -r '.sns_topic_arn')"
+                                 --query SecretString  --output text 2>/dev/null)"
 if [ -n "${_topic_arn}" ] ; then
     # publish the notification
     if [ ! -r "${_msg_already_sent}" ] ; then
